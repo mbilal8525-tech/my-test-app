@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Theme.Mazboot" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:statusBarColor">#0F6B5C</item>
+        <item name="android:statusBarColor">#13233A</item>
         <item name="android:navigationBarColor">#FFFFFF</item>
         <item name="android:windowBackground">@color/mazboot_bg</item>
-        <item name="android:colorPrimary">#0F6B5C</item>
-        <item name="android:colorAccent">#D9A21B</item>
+        <item name="android:colorPrimary">#13233A</item>
+        <item name="android:colorAccent">#F2A93B</item>
     </style>
-    <color name="mazboot_bg">#F5F6F1</color>
-    <color name="ic_launcher_background">#0F6B5C</color>
+    <color name="mazboot_bg">#F7F2EA</color>
+    <color name="ic_launcher_background">#F2A93B</color>
 </resources>

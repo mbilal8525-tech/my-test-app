@@ -29,7 +29,7 @@
       name_en: r.card_name || r.name || '', name_ar: r.card_name_ar || r.card_name || '',
       sharia: !!(r.sharia_compliant ?? r.is_islamic),
       annualFee: num(r.annual_fee), minSalary: num(r.min_salary), network: r.network || '',
-      colors: [r.color_primary || '#0F6B5C', r.color_secondary || '#0B4F45'],
+      colors: [r.color_primary || '#13233A', r.color_secondary || '#22395A'],
       fxFee: num(r.fx_fee, cfg.FX_FEE_DEFAULT),
       monthlyCap: num(r.monthly_cap, Infinity),
       rates: {

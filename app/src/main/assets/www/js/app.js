@@ -347,7 +347,7 @@
 
   function burst() {
     const box = $app.querySelector('.confetti'); if (!box) return;
-    const colors = ['#D9A21B', '#FBF1D6', '#DFF4EA', '#ffffff', '#D9604B'];
+    const colors = ['#F2A93B', '#FCEBCB', '#DDF3EA', '#ffffff', '#F7F2EA'];
     for (let i = 0; i < 60; i++) {
       const p = document.createElement('i');
       p.style.left = Math.random() * 100 + '%';
@@ -363,10 +363,10 @@
 
   function logoSvg(size) {
     return `<svg width="${size}" height="${size}" viewBox="0 0 108 108" aria-hidden="true">
-      <rect width="108" height="108" rx="26" fill="#0F6B5C"/>
-      <rect x="22" y="34" width="64" height="42" rx="8" fill="#0B4F45" stroke="#FBF1D6" stroke-opacity=".35" stroke-width="2"/>
-      <rect x="22" y="44" width="64" height="7" fill="#FBF1D6" fill-opacity=".25"/>
-      <path d="M38 58 L50 70 L76 38" fill="none" stroke="#D9A21B" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+      <rect width="108" height="108" rx="26" fill="#F2A93B"/>
+      <rect x="20" y="30" width="68" height="48" rx="9" fill="#13233A"/>
+      <rect x="20" y="41" width="68" height="7" fill="#F7F2EA" fill-opacity=".18"/>
+      <path d="M38 60 L50 71 L74 45" fill="none" stroke="#F2A93B" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
   }
 
   // ---------- Boot ----------
