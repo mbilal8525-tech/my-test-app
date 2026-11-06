@@ -1,0 +1,51 @@
+name: Build Mazboot APK
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v4
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.14.3'
+
+      - name: Build the APK
+        run: gradle assembleRelease --no-daemon --stacktrace
+
+      - name: Name the APK
+        run: cp app/build/outputs/apk/release/app-release.apk "Mazboot-v1.0.${{ github.run_number }}.apk"
+
+      - name: Keep a copy on the build page
+        uses: actions/upload-artifact@v4
+        with:
+          name: Mazboot-v1.0.${{ github.run_number }}
+          path: Mazboot-v1.0.${{ github.run_number }}.apk
+
+      - name: Publish to Releases
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "v1.0.${{ github.run_number }}" "Mazboot-v1.0.${{ github.run_number }}.apk" \
+            --title "Mazboot test build 1.0.${{ github.run_number }}" \
+            --notes "Test build from commit ${GITHUB_SHA::7}. Download the .apk below and open it on an Android phone (Android 8 or newer). Allow 'Install unknown apps' when asked. Sample data only." \
+            --latest

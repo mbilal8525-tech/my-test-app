@@ -1,0 +1,46 @@
+plugins {
+    id 'com.android.application'
+}
+
+// Each GitHub build gets a higher version number, so a new APK installs over the old one.
+def buildNumber = (System.getenv('GITHUB_RUN_NUMBER') ?: '1') as Integer
+
+android {
+    namespace 'app.mazboot'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId 'app.mazboot'
+        minSdk 26
+        targetSdk 34
+        versionCode buildNumber
+        versionName "1.0.${buildNumber}"
+    }
+
+    signingConfigs {
+        // TEST-ONLY signing key, kept in the repo so every build can update the previous install.
+        // Replace with a private key (stored in GitHub Secrets) before any Play Store release.
+        testRelease {
+            storeFile file('../keystore/mazboot-test.jks')
+            storePassword 'mazboot-test'
+            keyAlias 'mazboot'
+            keyPassword 'mazboot-test'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.testRelease
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    implementation 'androidx.webkit:webkit:1.12.1'
+}
